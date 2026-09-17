@@ -1,13 +1,107 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-void main() {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    IO.println(String.format("Hello and welcome!"));
+import java.util.Scanner;
 
-    for (int i = 1; i <= 5; i++) {
-        //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-        // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-        IO.println("i = " + i);
+public class Main {
+
+    static Scanner scanner = new Scanner(System.in);
+
+    public static void main(String[] args) {
+
+    double balance = 0;
+    boolean isRunning = true;
+    int choice;
+
+
+    while(isRunning){
+
+        System.out.println("*****************");
+        System.out.println("Banking Program");
+
+        System.out.println("*****************");
+        System.out.println("1. Show Balance");
+        System.out.println("2. Deposit");
+        System.out.println("3. Withdraw");
+        System.out.println("4. Exit");
+
+
+        System.out.println("*****************");
+        System.out.print("Choice: ");
+        choice = scanner.nextInt();
+
+        switch(choice){
+            case 1 ->  showBalance(balance);
+            case 2 -> balance += deposit();
+            case 3 -> balance -= withdraw(balance);
+            case 4 -> isRunning = false; default -> System.out.println("Invalid choice");
+
+
+        }
+
     }
+
+
+    System.out.println("**************************");
+    System.out.println("Have a nice day!");
+
+
+    System.out.println("**************************");
+
+    scanner.close();
+
+
+    }
+
+    static void showBalance(double balance){
+
+        System.out.println("***************************");
+        System.out.printf("$%.2f%n", balance);
+
+
+    }
+
+    static double deposit(){
+
+        double amount;
+
+
+        System.out.println("Enter amount to deposit: ");
+        amount = scanner.nextDouble();
+
+        if(amount < 0){
+
+            System.out.println("Invalid Amount");
+            return 0 ;
+
+        }
+
+        else{
+            return amount;
+        }
+    }
+
+
+    static double withdraw(double balance){
+
+
+
+        double amount;
+        System.out.print("Enter amount to withdraw: ");
+        amount = scanner.nextDouble();
+        if (amount > balance){
+            System.out.println("Invalid Amount");
+            return 0;
+
+        }
+
+        else if(amount < 0){
+            System.out.println("Invalid Amount");
+            return 0;
+        }
+
+        else {
+
+            return amount;
+
+        }
+    }
+
 }
